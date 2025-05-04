@@ -3,8 +3,7 @@ import 'dart:io';
 void main() {
   List<String> notas = <String>[];
 
-menu(notas);
-
+  menu(notas);
 }
 
 String getComando() {
@@ -21,44 +20,39 @@ String getComando() {
   return entrada!;
 }
 
+List<String> adcionarNota(List<String> notas) {
+  String? nota = "";
+  print("Escreva uma nota");
+  nota = stdin.readLineSync();
 
-List<String> adcionarNota(List<String> notas){
-String? nota = "";
-print("Escreva uma nota");
-nota = stdin.readLineSync();
+  if (nota == null || nota.isEmpty) {
+    print("Nao é possivel adcionar uma nota vazia");
+    adcionarNota(notas);
+  }
+  notas.add(nota!);
 
-if (nota == null || nota.isEmpty){
-print("Nao é possivel adcionar uma nota vazia");
-adcionarNota(notas);
-}
-notas.add(nota!);
-
-
-return notas;
+  return notas;
 }
 
-void listarNotas(List<String> notas){
-for (var i = 0; i < notas.length; i++ ) {
-print(notas[i]);
- }
-
+void listarNotas(List<String> notas) {
+  for (var i = 0; i < notas.length; i++) {
+    print(notas[i]);
+  }
 }
 
-void menu(List<String> notas){
-
-String comando = getComando();
+void menu(List<String> notas) {
+  String comando = getComando();
 
   switch (comando) {
-
     case "1":
-    adcionarNota(notas);
-    menu(notas);
+      adcionarNota(notas);
+      menu(notas);
 
     case "2":
-    listarNotas(notas);
-     menu(notas);
+      listarNotas(notas);
+      menu(notas);
 
-     case "3":
-     print("Até breve");
+    case "3":
+      print("Até breve");
   }
 }
